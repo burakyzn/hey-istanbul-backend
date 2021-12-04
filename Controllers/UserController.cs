@@ -8,14 +8,13 @@ using hey_istanbul_backend.Services;
 using hey_istanbul_backend.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace hey_istanbul_backend.Controllers
 {
     [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private IUserService _userService;
 
