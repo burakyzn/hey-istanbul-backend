@@ -5,7 +5,7 @@ namespace hey_istanbul_backend.Services.Interfaces
 {
     public interface IUserService
     {
-        public ResultModel<object> Register(RegisterRequest request);
-        public ResultModel<object> Authenticate(AuthenticateRequest request);
+        ResultModel<object> Register(RegisterRequest request);
+        ResultModel<object> Authenticate(AuthenticateRequest request);
     }
 }
