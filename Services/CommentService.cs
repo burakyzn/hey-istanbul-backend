@@ -61,7 +61,7 @@ namespace hey_istanbul_backend.Services
             return new ResultModel<object>(data : commentList);
         }
 
-        public ResultModel<object> GetCommentByUserId(Guid userId)
+        public ResultModel<object> GetCommentListByUserId(Guid userId)
         {
             var commentList = _dbContext.Comments
                 .Where(com => com.UserId == userId)
