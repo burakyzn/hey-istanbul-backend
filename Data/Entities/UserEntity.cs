@@ -1,12 +1,13 @@
 using System;
+using System.Collections.Generic;
 
-namespace hey_istanbul_backend.Data
+namespace hey_istanbul_backend.Data.Entities
 {
-    public class UserEntity
+    public class UserEntity : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Nickname { get; set; }
         public string Password { get; set; }
-        
+        public ICollection<CommentEntity> Comments { get; set; }
+        public ICollection<FavoriteEntity> Favorites { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using hey_istanbul_backend.Data;
+using hey_istanbul_backend.Data.Entities;
 using hey_istanbul_backend.Helpers;
 using hey_istanbul_backend.Models;
 using hey_istanbul_backend.Models.Users;
