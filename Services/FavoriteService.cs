@@ -48,7 +48,7 @@ namespace hey_istanbul_backend.Services
             return new ResultModel<object>(data: favorite, message: "The favorite has been removed");
         }
 
-        public ResultModel<object> GetFavoritesByUserId(Guid userId)
+        public ResultModel<object> GetFavoriteListByUserId(Guid userId)
         {
             var favoriteList = _dbContext.Favorites
                 .Where(com => com.UserId == userId)
