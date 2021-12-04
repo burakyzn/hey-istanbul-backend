@@ -19,18 +19,18 @@ namespace hey_istanbul_backend.Controllers
         }
 
         [HttpPost("CreateFavorite")]
-        ResultModel<object> CreateFavorite(CreateFavoriteRequest request){
+        public ResultModel<object> CreateFavorite(CreateFavoriteRequest request){
             request.UserId = this.GetActiveUserId();
             return _favoriteService.CreateFavorite(request);
         }
 
         [HttpPost("DeleteFavorite/{favoriteId}")]
-        ResultModel<object> DeleteFavorite(Guid favoriteId){
+        public ResultModel<object> DeleteFavorite(Guid favoriteId){
             return _favoriteService.DeleteFavorite(favoriteId, this.GetActiveUserId());
         }
 
         [HttpGet("GetFavorites")]
-        ResultModel<object> GetFavorites(){
+        public ResultModel<object> GetFavorites(){
             return _favoriteService.GetFavoriteListByUserId(this.GetActiveUserId());
         }
     }
