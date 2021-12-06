@@ -33,5 +33,10 @@ namespace hey_istanbul_backend.Controllers
         public ResultModel<object> GetFavorites(){
             return _favoriteService.GetFavoriteListByUserId(this.GetActiveUserId());
         }
+
+        [HttpGet("IsFavorite/{locationId}")]
+        public ResultModel<object> IsFavorite(string locationId){
+            return _favoriteService.IsFavorite(locationId, this.GetActiveUserId());
+        }
     }
 }

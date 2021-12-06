@@ -9,5 +9,6 @@ namespace hey_istanbul_backend.Services.Interfaces
         ResultModel<object> GetFavoriteListByUserId(Guid userId);
         ResultModel<object> CreateFavorite(CreateFavoriteRequest request);
         ResultModel<object> DeleteFavorite(Guid favoriteId, Guid userId);
+        ResultModel<object> IsFavorite(string locationId, Guid userId);
     }
 }

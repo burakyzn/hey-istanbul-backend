@@ -18,6 +18,15 @@ namespace hey_istanbul_backend.Services
 
         public ResultModel<object> CreateFavorite(CreateFavoriteRequest request)
         {
+            var favorite = _dbContext.Favorites
+                .Where(fav => fav.LocationId == request.LocationId)
+                .Where(fav => fav.UserId == request.UserId)
+                .Where(fav => fav.IsActive)
+                .SingleOrDefault();
+
+            if(favorite != null)
+                return new ResultModel<object>(data: favorite, message: "The favorite has already created.");
+
             FavoriteEntity newFavorite = new FavoriteEntity{
                 LocationId = request.LocationId,
                 UserId = request.UserId
@@ -51,12 +60,29 @@ namespace hey_istanbul_backend.Services
         public ResultModel<object> GetFavoriteListByUserId(Guid userId)
         {
             var favoriteList = _dbContext.Favorites
-                .Where(com => com.UserId == userId)
-                .Where(com => com.IsActive)
-                .OrderBy(com => com.Created)
+                .Where(fav => fav.IsActive)
+                .OrderBy(fav => fav.Created)
+                .Select(fav => new {
+                    fav.Id,
+                    fav.LocationId,
+                    fav.Created
+                })
                 .ToList();
             
             return new ResultModel<object>(data : favoriteList);
+        }
+
+        public ResultModel<object> IsFavorite(string locationId, Guid userId)
+        {
+            var favorite = _dbContext.Favorites
+                .Where(fav => fav.LocationId == locationId)
+                .Where(fav => fav.UserId == userId)
+                .Where(fav => fav.IsActive)
+                .SingleOrDefault();
+
+            return new ResultModel<object>(data: new {
+                    IsAlreadyFavorite = favorite != null
+                });
         }
     }
 }
