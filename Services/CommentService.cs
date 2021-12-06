@@ -5,6 +5,7 @@ using hey_istanbul_backend.Models;
 using hey_istanbul_backend.Models.Comments;
 using hey_istanbul_backend.Services.Interfaces;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace hey_istanbul_backend.Services
 {
@@ -56,6 +57,18 @@ namespace hey_istanbul_backend.Services
                 .Where(com => com.LocationId == locationId)
                 .Where(com => com.IsActive)
                 .OrderBy(com => com.Created)
+                .Include(com => com.User)
+                .Select(com => new {
+                    com.Id,
+                    com.LocationId,
+                    com.Title,
+                    com.Description,
+                    com.Created,
+                    User = new {
+                        com.User.Id,
+                        com.User.Nickname
+                    }
+                })
                 .ToList();
             
             return new ResultModel<object>(data : commentList);
@@ -67,6 +80,13 @@ namespace hey_istanbul_backend.Services
                 .Where(com => com.UserId == userId)
                 .Where(com => com.IsActive)
                 .OrderBy(com => com.Created)
+                .Select(com => new {
+                    com.Id,
+                    com.LocationId,
+                    com.Title,
+                    com.Description,
+                    com.Created
+                })
                 .ToList();
             
             return new ResultModel<object>(data : commentList);
