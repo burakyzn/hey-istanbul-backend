@@ -29,7 +29,8 @@ namespace hey_istanbul_backend.Services
 
             FavoriteEntity newFavorite = new FavoriteEntity{
                 LocationId = request.LocationId,
-                UserId = request.UserId
+                UserId = request.UserId,
+                Title = request.Title
             };
 
             _dbContext.Add(newFavorite);
@@ -65,6 +66,7 @@ namespace hey_istanbul_backend.Services
                 .Select(fav => new {
                     fav.Id,
                     fav.LocationId,
+                    fav.Title,
                     fav.Created
                 })
                 .ToList();

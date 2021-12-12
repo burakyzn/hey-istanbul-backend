@@ -13,6 +13,7 @@ namespace hey_istanbul_backend.Mappers
             builder.Property(x => x.Created).IsRequired(true);
             builder.Property(x => x.LocationId).IsRequired(true);
             builder.HasOne(x => x.User).WithMany(u => u.Favorites).HasForeignKey(x => x.UserId);
+            builder.Property(x => x.Title).IsRequired(true).HasDefaultValue("İsimsiz Mekan");
         }
     }
 }

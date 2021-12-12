@@ -8,5 +8,6 @@ namespace hey_istanbul_backend.Models.Favorites
         [JsonIgnore]
         public Guid UserId {get; set; }
         public string LocationId { get; set; }
+        public string Title { get; set; }
     }
 }
