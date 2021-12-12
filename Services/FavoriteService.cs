@@ -61,6 +61,7 @@ namespace hey_istanbul_backend.Services
         public ResultModel<object> GetFavoriteListByUserId(Guid userId)
         {
             var favoriteList = _dbContext.Favorites
+                .Where(fav => fav.UserId == userId)
                 .Where(fav => fav.IsActive)
                 .OrderBy(fav => fav.Created)
                 .Select(fav => new {
